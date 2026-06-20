@@ -13,7 +13,7 @@ The system provides a control and monitoring interface for a road painting robot
 
 Since the hardware is still under development, all displayed data is simulated.
 
-<img width="759" height="957" alt="image" src="https://github.com/user-attachments/assets/b2448afd-e2e2-45e7-a1dd-d71714b4f263" />
+<img width="759" height="957" alt="Sem título" src="https://github.com/user-attachments/assets/e98bafa4-1f7c-4b24-912f-6d16dc38143d" />
 
 
 Interface Overview
