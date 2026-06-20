@@ -72,8 +72,7 @@ GPS-based navigation system
 Replacement of temporary mapping module with custom system
 Physical control of painting mechanism
 Team
-João Antônio De França Garcia,
-Gabriel Sulacov
+João Antônio De França Garcia, Gabriel Sulacov
 Contact
 joao.antonio.defranca.garcia@gmail.com
 g.sulacov@aluno.ifsp.edu.br
