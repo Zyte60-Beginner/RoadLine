@@ -1,4 +1,4 @@
-# RoadLine
+<img width="854" height="930" alt="image" src="https://github.com/user-attachments/assets/8e2a6ffd-cee8-4ac6-a417-11b6e2d791f3" /># RoadLine
 v2.5.0-B
 
 Autonomous Road Painting Robot – Dashboard Prototype
@@ -12,6 +12,8 @@ Objective
 The system provides a control and monitoring interface for a road painting robot, allowing visualization of operational status, simulated telemetry, and system modules.
 
 Since the hardware is still under development, all displayed data is simulated.
+
+<img width="854" height="930" alt="image" src="https://github.com/user-attachments/assets/4e2a688b-b034-4b51-ad70-c60198e06a80" />
 
 Interface Overview
 
