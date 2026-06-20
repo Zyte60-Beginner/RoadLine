@@ -1,4 +1,4 @@
-<img width="854" height="930" alt="image" src="https://github.com/user-attachments/assets/8e2a6ffd-cee8-4ac6-a417-11b6e2d791f3" /># RoadLine
+# RoadLine
 v2.5.0-B
 
 Autonomous Road Painting Robot – Dashboard Prototype
