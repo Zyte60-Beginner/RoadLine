@@ -1,8 +1,8 @@
 # dashboard.py
 from PyQt6.QtWidgets import (QMainWindow, QWidget, QHBoxLayout, QVBoxLayout, 
                              QPushButton, QStackedWidget, QLabel, QFrame, QButtonGroup)
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QPixmap
+from PyQt6.QtCore import Qt, QSize
+from PyQt6.QtGui import QPixmap, QIcon
 from views import (MonitoringView, MappingView, LogsView, 
                    SettingsView, SupportView, CoffeeView)
 import styles
@@ -29,39 +29,67 @@ class MainWindow(QMainWindow):
         self.sidebar.setFixedWidth(240)
         sidebar_layout = QVBoxLayout(self.sidebar)
         sidebar_layout.setContentsMargins(10, 30, 10, 30)
+        sidebar_layout.setSpacing(5) # Mantém os botões do menu bem juntos
         
-        logo_label = QLabel("<font color='#F85A5A'>ROAD</font><font color='white'>LINE</font>")
-        logo_label.setStyleSheet("font-size: 24px; font-weight: 900; font-style: italic; margin-bottom: 30px;")
-        logo_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        sidebar_layout.addWidget(logo_label)
+        # Logotipo ROADLINE corrigido (separado e colado no topo)
+        logo_container = QWidget()
+        logo_container.setStyleSheet("background: transparent; margin-bottom: 20px;")
+        logo_layout = QHBoxLayout(logo_container)
+        logo_layout.setContentsMargins(0, 0, 0, 0)
+        logo_layout.setSpacing(0)
+        logo_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
         
+        lbl_road = QLabel("ROAD")
+        lbl_road.setStyleSheet("color: #F85A5A; font-size: 24px; font-weight: 900; font-style: italic; margin: 0; padding: 0;")
+        
+        lbl_line = QLabel("LINE")
+        lbl_line.setProperty("class", "LogoLine")
+        lbl_line.setStyleSheet("font-size: 24px; font-weight: 900; font-style: italic; margin: 0; padding: 0;")
+        
+        logo_layout.addWidget(lbl_road)
+        logo_layout.addWidget(lbl_line)
+        sidebar_layout.addWidget(logo_container)
+        
+        # Grupo de botões do menu
         self.menu_group = QButtonGroup(self)
         self.menu_group.setExclusive(True)
         
+        # --- PRIMEIRA MOLA: Empurra o menu para o centro, separando-o do Logotipo ---
+        sidebar_layout.addStretch()
+        
         menus = [
-            ("Monitoramento", 0),
-            ("Mapeamento", 1),
-            ("Logs", 2),
-            ("Configurações", 3),
-            ("Suporte", 4),
-            ("Buy us a Coffee", 5)
+            ("Monitoramento", 0, "monitor.png"),
+            ("Mapeamento", 1, "map.png"),
+            ("Logs", 2, "logs.png"),
+            ("Configurações", 3, "settings.png"),
+            ("Suporte", 4, "support.png"),
+            ("Buy us a Coffee", 5, "coffee.png")
         ]
         
         self.buttons = []
-        for text, index in menus:
+        for text, index, icon_name in menus:
             btn = QPushButton(f"  {text}")
             btn.setProperty("class", "MenuButton")
             btn.setCheckable(True)
             btn.setCursor(Qt.CursorShape.PointingHandCursor)
+            
+            # Carrega o ícone cinzento neutro se existir na pasta assets
+            icon_pixmap = QPixmap(f"assets/{icon_name}")
+            if not icon_pixmap.isNull():
+                btn.setIcon(QIcon(icon_pixmap))
+                btn.setIconSize(QSize(18, 18))
+            
             btn.clicked.connect(lambda checked, idx=index: self.switch_page(idx))
             self.menu_group.addButton(btn)
             sidebar_layout.addWidget(btn)
             self.buttons.append(btn)
             
         self.buttons[0].setChecked(True)
+        
+        # --- SEGUNDA MOLA: Empurra a área de utilizador para o rodapé e o menu para o centro ---
         sidebar_layout.addStretch()
         
-        # Componente da Área de Usuário
+        # Componente da Área de Usuário (Fixado no rodapé)
         user_container = QFrame()
         user_container.setStyleSheet("background: transparent; margin-left: 10px;")
         user_layout = QHBoxLayout(user_container)
@@ -76,7 +104,8 @@ class MainWindow(QMainWindow):
             avatar_lbl.setStyleSheet("background-color: #444; border-radius: 17px; min-width: 35px; max-width: 35px; min-height: 35px; max-height: 35px;")
             
         user_info_lbl = QLabel("Zyte60\nAdministrador")
-        user_info_lbl.setStyleSheet("color: #FFFFFF; font-size: 12px; font-weight: bold; line-height: 120%;")
+        user_info_lbl.setStyleSheet("font-size: 12px; font-weight: bold; line-height: 120%;")
+        user_info_lbl.setProperty("class", "NormalText")
         
         user_layout.addWidget(avatar_lbl)
         user_layout.addWidget(user_info_lbl)
@@ -103,7 +132,7 @@ class MainWindow(QMainWindow):
         
         content_layout.addWidget(self.stacked_widget)
         
-        # Modificação: Substituição dos Cards de Ação por 3 botões cinzas vazios
+        # Botões inferiores vazios (Painel de Comando Rápido controlado pelo CSS)
         bottom_actions = QHBoxLayout()
         bottom_actions.setContentsMargins(30, 0, 30, 30)
         bottom_actions.setSpacing(20)
@@ -111,7 +140,7 @@ class MainWindow(QMainWindow):
         for _ in range(3):
             empty_btn = QPushButton("")
             empty_btn.setFixedHeight(50)
-            empty_btn.setStyleSheet("background-color: #333333; border: 1px solid #444; border-radius: 8px;")
+            empty_btn.setProperty("class", "BottomActionBtn")
             bottom_actions.addWidget(empty_btn)
         
         content_layout.addLayout(bottom_actions)
