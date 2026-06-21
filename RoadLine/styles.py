@@ -11,7 +11,7 @@ QPushButton.MenuButton {
     text-align: left;
     padding-left: 20px;
     border: none;
-    border-radius: 0px; /* Borda 100% quadrada */
+    border-radius: 0px;
     font-size: 14px;
     font-weight: bold;
     height: 45px;
@@ -21,6 +21,8 @@ QPushButton.MenuButton {
 /* Base dos botões inferiores */
 QPushButton.BottomActionBtn {
     border-radius: 8px;
+    font-weight: bold;
+    font-size: 13px;
 }
 
 /* Cards Inferiores Fixos de Ação */
@@ -51,16 +53,16 @@ QPushButton.MenuButton {
     color: #b0b0b0;
 }
 
-/* O botão selecionado (:checked) e o com mouse em cima (:hover) agora têm o mesmo visual */
 QPushButton.MenuButton:hover, QPushButton.MenuButton:checked {
     background-color: #333333;
     color: white;
-    border-radius: 0px; /* Garante que o fundo seja quadrado */
+    border-radius: 0px;
 }
 
 QPushButton.BottomActionBtn {
     background-color: #333333;
     border: 1px solid #444;
+    color: #FFFFFF;
 }
 
 QLabel.SectionTitle {
@@ -118,16 +120,16 @@ QPushButton.MenuButton {
     color: #555555;
 }
 
-/* O botão selecionado (:checked) e o com mouse em cima (:hover) agora têm o mesmo visual */
 QPushButton.MenuButton:hover, QPushButton.MenuButton:checked {
     background-color: #E8EAED;
     color: #000000;
-    border-radius: 0px; /* Garante que o fundo seja quadrado */
+    border-radius: 0px;
 }
 
 QPushButton.BottomActionBtn {
     background-color: #FFFFFF;
     border: 1px solid #DCDFE4;
+    color: #222222;
 }
 
 QLabel.SectionTitle {
